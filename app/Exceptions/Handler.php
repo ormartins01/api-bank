@@ -27,4 +27,12 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $error) {
+        
+        
+        return response()->json([
+            'message' => 'Internal server error!'
+        ], 500);
+    }
 }
