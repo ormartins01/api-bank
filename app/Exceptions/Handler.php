@@ -30,9 +30,10 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $error) {
         
+
         
         return response()->json([
-            'message' => 'Internal server error!'
+            'message' => 'Internal 2 server error!'
         ], 500);
     }
 }
