@@ -14,8 +14,6 @@ class User extends Authenticatable implements JWTSubject {
 
     use HasApiTokens, HasFactory, Notifiable, HasUuids;
 
-    protected $table = "user";
-
     /**
      * The attributes that are mass assignable.
      *
