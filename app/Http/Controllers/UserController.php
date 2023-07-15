@@ -2,11 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\{CreateDepositRequest, CreateUserRequest};
+use App\Services\CreateDepositService;
+use App\Services\CreateUserService;
 
 class UserController extends Controller {
-    public function create(Request $request) {
-        return User::create($request->all());
+    public function create(CreateUserRequest $request) {
+        $userCreated = new CreateUserService();
+
+        return $userCreated->execute($request->all());
+    }
+
+    public function deposit(CreateDepositRequest $request) {
+        $createDepositService = new CreateDepositService();
+
+        return $createDepositService->execute(
+            auth()->user()->id, 
+            $request->value
+        );
     }
 }
