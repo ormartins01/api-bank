@@ -2,21 +2,22 @@
 
 namespace App\Services;
 
+use App\Exceptions\AppError;
 use App\Models\User;
 use Error;
 
-class UserCreateService {
+class CreateUserService {
     public function execute(array $data) {
         $userExist = User::firstWhere('email', $data['email']);
 
-        if(!$userExist) {
-            throw new Error('email already exists!');
+        if(!is_null($userExist)) {
+            throw new AppError('email already exists!', 400);
         }
 
         $userExist = User::firstWhere('cpf', $data['cpf']);
 
-        if(!$userExist) {
-            throw new Error('cpf already exists!');
+        if(!is_null($userExist)) {
+            throw new AppError('cpf already exists!', 400);
         }
 
 
