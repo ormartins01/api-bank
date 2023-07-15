@@ -20,7 +20,7 @@ class JWTMiddleware {
             }
 
             if($error instanceof TokenExpiredException) {
-                throw new AppError('invalid expired', 401);
+                throw new AppError('expired token', 401);
             }
 
             throw new AppError($error->getMessage(), 500);
